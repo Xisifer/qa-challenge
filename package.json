@@ -1,0 +1,23 @@
+{
+  "name": "qa-challenge",
+  "version": "1.0.0",
+  "description": "PointHealth tests for Reddit using Mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xisifer/qa-challenge.git"
+  },
+  "author": "Scott Finlay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xisifer/qa-challenge/issues"
+  },
+  "homepage": "https://github.com/Xisifer/qa-challenge#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
+  }
+}

@@ -1,27 +1,18 @@
 {
-  "name": "qa-challenge",
+  "name": "qajest",
   "version": "1.0.0",
-  "description": "PointHealth tests for Reddit using Mocha",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Xisifer/qa-challenge.git"
-  },
-  "author": "Scott Finlay",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Xisifer/qa-challenge/issues"
+  "devDependencies": {
+    "jest": "^26.6.3"
   },
-  "homepage": "https://github.com/Xisifer/qa-challenge#readme",
   "dependencies": {
-    "chai": "^4.2.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mocha": "^8.2.1",
-    "open": "^7.3.0",
-    "request": "^2.88.2"
+    "jest-puppeteer": "^4.4.0",
+    "puppeteer": "^5.5.0"
   }
 }

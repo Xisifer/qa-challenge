@@ -1,7 +1,12 @@
 
+const {USERNAME, PASSWORD} = require('./resources.json');
 // Configurable Host
 const host = 'https://www.reddit.com/login'
 
+
+
+
+// Ideally all these tests would be separated out into different files, but Jest doesn't seem to have a way to specify a certain order to run tests in. In this case, the order of the tests (login > do stuff > logout) is important, so I'm putting it all sequentially in one file here.
 
 describe('Login test', () => {
     beforeAll(async () => {
@@ -12,36 +17,29 @@ describe('Login test', () => {
         await expect(page.title()).resolves.toMatch('reddit.com: Log in');
     });
 
-    it('enters the credentials', function() {
-        // Grab USERNAME and enter it into the Username field
-        const loginBox = page.$('loginUsername');
-        loginBox.value = process.env.USERNAME;
-        // Grab PASSWORD and enter it into the Password field
-        const passwordBox = page.$('loginPassword');
-        passwordBox.value = process.env.PASSWORD;
+    it('enters the credentials', async () => {
+        await page.type('#loginUsername', USERNAME)
+        await page.type('#loginPassword', PASSWORD)
+        // await new Promise(r => setTimeout(r,10000))
     });
     
     it('clicks Login and proceeds', async () => {
-        const loginButton = page.$('.AnimatedForm__submitButton');
-        console.log("loginButton is: " + loginButton);
-
-        JSON.stringify(page);
-
-        console.log("page is: " + page);
+        const loginButton = await page.$('.AnimatedForm__submitButton');
 
         await loginButton.click();
-        await page.click('.AnimatedForm__submitButton');
+        // await page.click('.AnimatedForm__submitButton');
 
 
         // Waiting for the page navigation using a strict timer rather than waiting for an event, because I can't get the event to be detected properly.
-        await new Promise(r => setTimeout(r,3000))
+        await new Promise(r => setTimeout(r,10000))
         // page.waitForNavigation();
     });
 
     it('checks that the user is redirected to reddit homepage', async () => {
-        await page.waitForSelector('title');
+        // await page.waitForSelector('title');
         console.log("We have the title!");
         await expect(page.title()).resolves.toMatch('reddit: the front page of the internet');
+        console.log('Are we here?');
     })
 });
 
@@ -63,11 +61,11 @@ describe('Joining a subreddit', () => {
     
 describe('Logout test', () => {
     it('clicks on the user dropdown menu', async () => {
-        const dropdownMenu = page.$('USER_DROPDOWN_ID')
+        const dropdownMenu = page.$('#USER_DROPDOWN_ID')
         dropdownMenu.click;
     });
     it('clicks the Logout button', function() {
-        const logoutButton = page.$('vzhy90YD0qH7ZDJi7xMGw');
+        const logoutButton = page.$('.vzhy90YD0qH7ZDJi7xMGw');
         logoutButton.click;
     })
 });

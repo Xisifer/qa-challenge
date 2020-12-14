@@ -3,8 +3,7 @@ const {USERNAME, PASSWORD} = require('./resources.json');
 // Configurable Host
 const host = 'https://www.reddit.com/login'
 
-
-
+jest.setTimeout(20000)
 
 // Ideally all these tests would be separated out into different files, but Jest doesn't seem to have a way to specify a certain order to run tests in. In this case, the order of the tests (login > do stuff > logout) is important, so I'm putting it all sequentially in one file here.
 
@@ -20,24 +19,24 @@ describe('Login test', () => {
     it('enters the credentials', async () => {
         await page.type('#loginUsername', USERNAME)
         await page.type('#loginPassword', PASSWORD)
-        // await new Promise(r => setTimeout(r,10000))
     });
     
     it('clicks Login and proceeds', async () => {
         const loginButton = await page.$('.AnimatedForm__submitButton');
-
         await loginButton.click();
-        // await page.click('.AnimatedForm__submitButton');
-
 
         // Waiting for the page navigation using a strict timer rather than waiting for an event, because I can't get the event to be detected properly.
-        await new Promise(r => setTimeout(r,10000))
-        // page.waitForNavigation();
+        // await new Promise(r => setTimeout(r,10000))
+
     });
 
+
+
+
     it('checks that the user is redirected to reddit homepage', async () => {
+        await page.waitForNavigation({waitUntil: 'networkidle2'});
         // await page.waitForSelector('title');
-        console.log("We have the title!");
+        // await new Promise(r => setTimeout(r,10000))
         await expect(page.title()).resolves.toMatch('reddit: the front page of the internet');
         console.log('Are we here?');
     })

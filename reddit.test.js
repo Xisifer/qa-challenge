@@ -1,5 +1,6 @@
 
 const {USERNAME, PASSWORD} = require('./resources.json');
+const puppeteer = require('puppeteer');
 // Configurable Host
 const host = 'https://www.reddit.com/login'
 
@@ -9,14 +10,28 @@ jest.setTimeout(20000)
 
 describe('Login test', () => {
     beforeAll(async () => {
-        await page.goto("https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2F");
-    });
-    
-    it('should be titled "reddit.com: Log in"', async () => {
-        await expect(page.title()).resolves.toMatch('reddit.com: Log in');
+        await page.goto(host);
+        
     });
 
+    // it('checks that the user is on the reddit homepage', async () => {
+    //     await page.waitForNavigation({waitUntil: 'networkidle2'});
+    //     await expect(page.title()).resolves.toMatch('reddit: the front page of the internet');
+    // })
+
+    // it('clicks the Log In button', async () => {
+    //     await page.waitForSelector('._3Wg53T10KuuPmyWOMWsY2F', {visible: true});
+    //     const frontPageLoginButton = await page.$('._3Wg53T10KuuPmyWOMWsY2F')
+    //     await frontPageLoginButton.click();
+    // })
+
+    // it('checks that the user is on the Login page', async () => {
+    //     await page.waitForNavigation({waitUntil: 'networkidle2'});
+    //     await expect(page.title()).resolves.toMatch('reddit.com: Log in');
+    // });
+
     it('enters the credentials', async () => {
+        // await page.waitForNavigation({waitUntil: 'networkidle2'});
         await page.type('#loginUsername', USERNAME)
         await page.type('#loginPassword', PASSWORD)
     });
@@ -24,34 +39,28 @@ describe('Login test', () => {
     it('clicks Login and proceeds', async () => {
         const loginButton = await page.$('.AnimatedForm__submitButton');
         await loginButton.click();
-
-        // Waiting for the page navigation using a strict timer rather than waiting for an event, because I can't get the event to be detected properly.
-        // await new Promise(r => setTimeout(r,10000))
-
     });
-
-
-
-
     it('checks that the user is redirected to reddit homepage', async () => {
         await page.waitForNavigation({waitUntil: 'networkidle2'});
-        // await page.waitForSelector('title');
-        // await new Promise(r => setTimeout(r,10000))
         await expect(page.title()).resolves.toMatch('reddit: the front page of the internet');
-        console.log('Are we here?');
     })
 });
 
 
 
 describe('Saving a post', () => {
-    it('does a thing', function() {
-        console.log("Thing done!");
+    it('clicks the first Save button found', async () => {
+        const postSaveButton = await page.$('._10K5i7NW6qcm-UoCtpB3aK')
+        await postSaveButton.click();
     })
+
 })
 
 describe('Joining a subreddit', () => {
-    it('clicks the join sub link on the homepage', function() {
+    it('clicks the join sub link on the homepage', async () => {
+        // const subredditList = 
+        const subredditButton = await page.$('._267lcOmg8VvXcoj9O0Q1TB');
+        await subredditButton.click(); 
         console.log("I like kittens");
     })
 })

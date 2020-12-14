@@ -1,6 +1,7 @@
 module.exports = {
     launch: {
-        headless:false,
+        headless:false, 
+        args: ['--disable-notifications'],
         slowMo: 5
     },
     browserContext: 'default',

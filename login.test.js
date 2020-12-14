@@ -1,13 +1,16 @@
 
-describe('Google', () => {
-    beforeAll(async () => {
-      await page.goto('https://google.com');
-    });
+// Configurable Host
+const host = 'https://www.reddit.com/login'
+
+// describe('Reddit test', () => {
+//     beforeAll(async () => {
+//       await page.goto(host);
+//     });
   
-    it('should be titled "Google"', async () => {
-      await expect(page.title()).resolves.toMatch('Google');
-    });
-  });
+//     it('should be titled "Reddit"', async () => {
+//       await expect(page.title()).resolves.toMatch('reddit: the front page of the internet');
+//     });
+//   });
 
 
 // require('dotenv').config();
@@ -20,45 +23,40 @@ describe('Google', () => {
 
 
 
-// // module.exports.redditLoginTest = function() {
-//     class LoginLogout {
-//         loginTest() {
-//             it('should open the reddit login page', async() => {
-//             // opens a window of the default browser
-//             await open("https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2F");
-//             });
-//             // window.onload = function() {
-//                 it('enters the username', function() {
-//                     // Grab USERNAME and enter it into the Username field
-//                     const loginBox = document.getElementById('loginUsername');
-//                     loginBox.focus();
-//                     loginBox.select();
-//                     loginBox.value = process.env.USERNAME;
-//                 });
-//                 it('enters the password', function() {
-//                     // Grab PASSWORD and enter it into the Password field
-//                     const passwordBox = document.getElementById('loginPassword');
-//                     passwordBox.focus();
-//                     passwordBox.select();
-//                     passwordBox.value = "Tester123!";
-//                 })
-//                 it('clicks Login', function() {
-//                     //   Click the button
-//                     document.getElementsByTagName('button')[0].click();
-    
-    
-//                     //   Waiting for the page to load before continuing
-//                     document.addEventListener('DOMContentLoaded', function(event) {
-//                         console.log("Login successful!");
-//                     })
-//                 });
-//             }
+// module.exports.redditLoginTest = function() {
+    // class LoginLogout {
+        // loginTest() {
+          describe('Login test', () => {
+            beforeAll(async () => {
+              await page.goto("https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2F");
+            });
+          
+            it('should be titled "reddit.com: Log in"', async () => {
+              await expect(page.title()).resolves.toMatch('reddit.com: Log in');
+            });
+
+            it('enters the credentials', function() {
+                // Grab USERNAME and enter it into the Username field
+                const loginBox = page.$('loginUsername');
+                loginBox.value = process.env.USERNAME;
+                // Grab PASSWORD and enter it into the Password field
+                const passwordBox = page.$('loginPassword');
+                passwordBox.value = process.env.PASSWORD;
+            });
+            it('clicks Login', function() {
+                //   Click the button
+                const loginButton = page.$('AnimatedForm__submitButton');
+                loginButton.click;
+            });
+
+          });
 
         
-//         logoutTest() {
-//             it('should log the user out', function() {
-//                 console.log("I'm outta here!");
-//             })
-//         }
-//     }
+    //     logoutTest() {
+    //         it('should log the user out', function() {
+    //             console.log("I'm outta here!");
+    //         })
+    //     }
+    //   }
+    // }
 // module.exports = {LoginLogout};

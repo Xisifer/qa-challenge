@@ -43,11 +43,16 @@ const host = 'https://www.reddit.com/login'
                 const passwordBox = page.$('loginPassword');
                 passwordBox.value = process.env.PASSWORD;
             });
-            it('clicks Login', function() {
-                //   Click the button
-                const loginButton = page.$('AnimatedForm__submitButton');
-                loginButton.click;
+          
+            it('clicks Login and proceeds"', async () => {
+              const loginButton = page.$('AnimatedForm__submitButton');
+              loginButton.click;
+              console.log("CLICK!");
             });
+            // it('clicks Login', function() {
+            //     //   Click the button
+
+            // });
 
           });
 
@@ -59,4 +64,3 @@ const host = 'https://www.reddit.com/login'
     //     }
     //   }
     // }
-// module.exports = {LoginLogout};

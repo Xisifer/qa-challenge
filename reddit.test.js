@@ -32,8 +32,8 @@ describe('Login test', () => {
 
     it('enters the credentials', async () => {
         // await page.waitForNavigation({waitUntil: 'networkidle2'});
-        await page.type('#loginUsername', USERNAME)
-        await page.type('#loginPassword', PASSWORD)
+        await page.type('#loginUsername', USERNAME);
+        await page.type('#loginPassword', PASSWORD);
     });
     
     it('clicks Login and proceeds', async () => {
@@ -43,7 +43,7 @@ describe('Login test', () => {
     it('checks that the user is redirected to reddit homepage', async () => {
         await page.waitForNavigation({waitUntil: 'networkidle2'});
         await expect(page.title()).resolves.toMatch('reddit: the front page of the internet');
-    })
+    });
 });
 
 
@@ -52,18 +52,28 @@ describe('Saving a post', () => {
     it('clicks the first Save button found', async () => {
         const postSaveButton = await page.$('._10K5i7NW6qcm-UoCtpB3aK')
         await postSaveButton.click();
-    })
+    });
 
-})
+});
 
 describe('Joining a subreddit', () => {
-    it('clicks the join sub link on the homepage', async () => {
-        // const subredditList = 
-        const subredditButton = await page.$('._267lcOmg8VvXcoj9O0Q1TB');
+    it('navigates to the subreddit of the first post we see', async () => {
+        // Click the first subreddit link we see
+        const subredditButton = await page.$('._3ryJoIoycVkA88fy40qNJc');
         await subredditButton.click(); 
-        console.log("I like kittens");
-    })
+        // Wait for page to load
+        await page.waitForNavigation({waitUntil: 'networkidle2'});
+    });
+    it('clicks the Join Sub button', async () => {
+        const subredditJoinButton = await page.$('._3VgTjAJVNNV7jzlnwY-OFY');
+        await subredditJoinButton.click();
+    });
+
+    it('verifies that the successful joining popup appears', async () => {
+        await expect(page.$('_7JH6kQpO-bx66b9ajIZrz')).stringContaining('joined');
+    });
 })
+
 
 
     

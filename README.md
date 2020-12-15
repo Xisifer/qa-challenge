@@ -4,6 +4,8 @@ To run the test, install dependencies with "npm install" in the node terminal, t
 
 This assignment is not fully complete. Several of the tests fail due to me not quite being able to finesse my syntax properly, and having incomplete knowledge of Jest and XPath. I added as many comments as I could to explain thought processes and where things need improvement.
 
+Structurally, the credentials should be in a private .env file instead of a JSON, and sub-test-suites should be broken out into their own files, but I was unable to figure out environment variable handling with Jest, so the JSON became a stopgap measure so I didn't spend too long roadblocked.
+
 ----------------------------------------------------------
 Original Prompt:
 ----------------------------------------------------------

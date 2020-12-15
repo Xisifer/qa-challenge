@@ -1,3 +1,13 @@
+QA Coding Challenge, written in JavaScript using Jest, Puppeteer, and Jest-Puppeteer.
+
+To run the test, install dependencies with "npm install" in the node terminal, then enter "npm run test".
+
+This assignment is not fully complete. Several of the tests fail due to me not quite being able to finesse my syntax properly, and having incomplete knowledge of Jest and XPath. I added as many comments as I could to explain thought processes and where things need improvement.
+
+----------------------------------------------------------
+Original Prompt:
+----------------------------------------------------------
+
 # QA Coding Challenge
 
 Test a couple of scenarios in the popular social media website: www.reddit.com
